@@ -1,0 +1,23 @@
+usuario
+-- _id
+-- name
+-- email
+
+
+publicações
+
+-- _id
+-- idUser
+-- IdCategory
+-- title
+-- Body
+-- DatePublication
+
+Categorias
+-- Node
+-- ReactJs
+-- ReactNative
+-- PHP
+-- Javascript
+-- Typescript
+-- Outros
