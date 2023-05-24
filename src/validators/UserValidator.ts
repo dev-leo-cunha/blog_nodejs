@@ -55,10 +55,5 @@ export const edit = checkSchema({
             optional:true, // Não pode estar vazio
             isLength: { options: { min:4 } },// mínimo de caracters
             errorMessage: 'A senha precisa ter pelo menos 4 caracteres'// mensagem de erro, se houver.
-        },
-
-        idUser: {
-            notEmpty:true,
-            errorMessage: 'Faça o Login!'
         }
     })

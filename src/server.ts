@@ -1,10 +1,11 @@
 import express, {Request, Response, ErrorRequestHandler, NextFunction} from 'express'
 import path from 'path'
-require('dotenv').config();
+import dotenv from 'dotenv'
 import cors from 'cors';
 import router from './routes/api';
 import mongoose from 'mongoose';
 
+dotenv.config();
 const port = process.env.PORT;
 mongoose.set('strictQuery', false)
 

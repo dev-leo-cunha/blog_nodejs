@@ -1,5 +1,6 @@
 import JWT from "jsonwebtoken"
-require('dotenv').config()
+import dotenv from 'dotenv'
+dotenv.config();
 
 export const generateToken = (email:string)=>{ // Cria um token quando é feito o cadastro e toda vez que é feito um login, já que ele expira em 2hrs.
     const token = JWT.sign({email},

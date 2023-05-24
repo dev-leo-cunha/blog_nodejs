@@ -74,7 +74,9 @@ export const edit = async(req:Request, res:Response)=>{
     }
     const data = matchedData(req) // Caso não ocorra erro, salva os dados na constante data.
 
-    const user = await User.findOne({_id: data.idUser})
+    const userId = req.params.id
+
+    const user = await User.findOne({_id: userId})
 
     if(user) {
         if(data.newPassword) { //Caso tenha um novo password para alterar.

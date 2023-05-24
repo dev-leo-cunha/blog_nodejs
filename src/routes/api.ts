@@ -16,12 +16,12 @@ router.get('/ping', UserController.ping);
 
 router.post('/user/register',                       UserValidator.signup,             UserController.register            )
 router.post('/user/login',                          UserValidator.signin,             UserController.login               )
-router.post('/user/edit',     AuthToken,            UserValidator.edit,               UserController.edit                )
+router.put('/user/:id',       AuthToken,            UserValidator.edit,               UserController.edit                )
 
-router.post('/blog/all',      AuthToken,                                              BlogController.AllPublication      )
+router.get('/blog/all',       AuthToken,                                              BlogController.AllPublication      )
 router.post('/blog/add',      AuthToken,            PublicationValidator.add,         BlogController.addPublication      )
-router.post('/blog/del',      AuthToken,            PublicationValidator.del,         BlogController.deletePublication   )
-router.post('/blog/edit',     AuthToken,            PublicationValidator.edit,        BlogController.editPublication     )
+router.delete('/blog/:id',    AuthToken,                                              BlogController.deletePublication   )
+router.put('/blog/:id',       AuthToken,            PublicationValidator.edit,        BlogController.editPublication     )
 
 
 export default router;

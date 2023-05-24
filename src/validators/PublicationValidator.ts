@@ -18,18 +18,7 @@ export const add = checkSchema({
         }
     })
 
-    export const del = checkSchema({
-        idPubli: {
-            notEmpty:true, // Não pode estar vazio
-            errorMessage: 'Faça o login.' // mensagem de erro, se houver.
-        }
-    })
-
     export const edit = checkSchema({
-        idPubli: {
-            notEmpty:true, // Não pode estar vazio
-            errorMessage: 'Faça o login.' // mensagem de erro, se houver.
-        },
         title: {
             optional:true,
             trim:true, // remove os espaços do começo e fim da string

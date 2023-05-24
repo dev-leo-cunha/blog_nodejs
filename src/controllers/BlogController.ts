@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { validationResult, matchedData } from "express-validator";
 import { newDate } from "../services/formDate";
+
 const Publication = require('../models/Publications')
 const User = require('../models/User')
 const Category = require('../models/Category')
@@ -46,9 +47,9 @@ export const deletePublication = async (req:Request, res:Response)=>{
         if(!errors.isEmpty()) { //Se tiver erro, retorna False
             return res.json({error: errors.mapped()}) //retorna todos os erros pelo mapped
         }
-        const data = matchedData(req) // Caso não ocorra erro, salva os dados na constante data.
+        const publiId = req.params.id
 
-        await Publication.deleteOne({_id: data.idPubli}) // Deleta a publicação onde o data.idPubli, que é o id da publicação recebido do front, seja igual o _id do BD
+        await Publication.deleteOne({_id: publiId}) // Deleta a publicação onde o publiId, que é o id da publicação recebido via params, seja igual o _id do BD
 
         return res.json({status:true})
 
@@ -60,12 +61,13 @@ export const editPublication = async (req:Request, res:Response)=>{
             return res.json({error: errors.mapped()}) //retorna todos os erros pelo mapped
         }
         const data = matchedData(req) // Caso não ocorra erro, salva os dados na constante data.
+        const publiId = req.params.id
         
-        let publi = await Publication.findOne({_id:data.idPubli})
+        let publi = await Publication.findOne({_id:publiId})
 
         if(publi) {
-            if(data.title) {publi.title = data.title}// Caso tenha um titulo para substituir
-            if(data.body) {publi.body = data.body;}  // Caso tenha um corpo do texto para substituir
+            if(data.title) publi.title = data.title // Caso tenha um titulo para substituir
+            if(data.body) publi.body = data.body;  // Caso tenha um corpo do texto para substituir
 
             await publi.save(); // Após alterar, salva a publicação.
 
