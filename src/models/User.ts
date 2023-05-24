@@ -1,5 +1,6 @@
-import mongoose from "mongoose";
-mongoose.Promise = global.Promise
+import mongoose, { Model } from "mongoose";
+
+mongoose.Promise = global.Promise;
 
 const modelSchema = new mongoose.Schema({
     name: String,
@@ -8,10 +9,14 @@ const modelSchema = new mongoose.Schema({
     token: String
 })
 
-const modelName = 'User'
+const modelName = 'User';
 
-if(mongoose.connection && mongoose.connection.models[modelName]) { // se tem conexao e se ja tem conexao com o model
-    module.exports = mongoose.connection.models[modelName] // cria o model
+let User: Model<any>;
+
+if (mongoose.connection && mongoose.connection.models[modelName]) {
+    User = mongoose.connection.models[modelName];
 } else {
-    module.exports = mongoose.model(modelName, modelSchema) // se nao, cria o model.
+    User = mongoose.model(modelName, modelSchema);
 }
+
+export default User;

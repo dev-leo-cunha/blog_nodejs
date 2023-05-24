@@ -1,5 +1,6 @@
-import mongoose from "mongoose";
-mongoose.Promise = global.Promise
+import mongoose, { Model } from "mongoose";
+
+mongoose.Promise = global.Promise;
 
 const modelSchema = new mongoose.Schema({
     idUser: String,
@@ -7,12 +8,16 @@ const modelSchema = new mongoose.Schema({
     title: String,
     body: String,
     datePublication: String
-})
+});
 
-const modelName = 'Publications'
+const modelName = 'Publications';
 
-if(mongoose.connection && mongoose.connection.models[modelName]) { // se tem conexao e se ja tem conexao com o model
-    module.exports = mongoose.connection.models[modelName] // cria o model
+let Publication: Model<any>;
+
+if (mongoose.connection && mongoose.connection.models[modelName]) {
+    Publication = mongoose.connection.models[modelName];
 } else {
-    module.exports = mongoose.model(modelName, modelSchema) // se nao, cria o model.
+    Publication = mongoose.model(modelName, modelSchema);
 }
+
+export default Publication;

@@ -2,9 +2,9 @@ import { Request, Response } from "express";
 import { validationResult, matchedData } from "express-validator";
 import { newDate } from "../services/formDate";
 
-const Publication = require('../models/Publications')
-const User = require('../models/User')
-const Category = require('../models/Category')
+import Publication from '../models/Publications';
+import User from '../models/User'
+import Category from '../models/Category'
 
 export const AllPublication = async (req:Request, res:Response)=>{
     let publications = await Publication.find({}); // puxa todas as publicações do blog
